@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<package name="struts_sm"  extends="struts-default, tiles-default">
+	<!-- <action name="main" class="main.MainAction">
+			<result name="success" type="tiles">main</result>
+		</action> -->
+		
+		<!-- 장소입력 폼 -->
+		<action name="lendplaceForm" class="lendplace.LendplaceFormAction">
+		<result name="success" type="tiles">lendplaceForm</result>
+		</action>
+
+		<!-- 장소입력 처리 -->
+		<action name="lendplaceFormInsert" class="lendplace.LendplaceFormAction" method="insert">
+		<result type="redirect-action">	
+		<param name="actionName">lendplace</param>
+		</result>
+		</action>
+		
+		<!-- 장소대관 목록 -->
+		<!-- http://localhost:8080/YOGI/lendplace.action -->
+		<action name="lendplace" class="lendplace.LendplaceAction">
+			<result name="success" type="tiles">lendplace</result>
+		</action>
+		
+		  <!-- 장소대관 상세보기 -->
+		<action name="lendplaceDetail" class="lendplace.LendplaceDetailAction">
+			<result name="success" type="tiles">lendplaceDetail</result>
+		</action>  
+		
+		
+		<!-- 장소 신청 -->
+		<action name="lendplaceBook" class="lendplace.PlacebookAction">
+		    <result type="chain">	
+		<param name="actionName">lendplaceDetail</param>
+		</result>
+
+		</action>
+		<!-- 날짜 중복 확인 -->
+		<action name="DateCheckAction" class="lendplace.DateCheckAction">
+			<result name="success">/members/membersIdChk.jsp</result>
+			<!-- <result name="reject">/members/memberIdChkError.jsp</result> -->
+		</action>
+		<!-- 장소검색 -->
+		<action name="lsearch" class="lendplace.LendplaceAction" method="search">
+			<result name="success" type="tiles">lendplace</result>
+		</action>
+		
+		<!-- 마이페이지 이동-->
+		<action name="mypageView" class="mypage.MypageAction">
+			<result name="success" type="tiles">mypageView</result>
+			<result name="admin" type="tiles">admin</result>
+		</action>
+		
+		<!-- mypage 내가 개설한 모임 -->
+		<action name="mypageWriteHistory" class="mypage.MypageWriteHistoryAction">
+			<result name="success" type="tiles">writeHistory</result>
+		</action>
+		
+		<!-- 마이페이지 모임참여내역 -->
+		<action name="mypageMeetHistory" class="mypage.MypageMeetHistoryAction">
+			<result name="success" type="tiles">meetHistory</result>
+		</action>
+		
+		<!-- mypage 내가 찜한 모임 -->
+		<action name="mypageZzimHistory" class="mypage.MypageZzimHistoryAction">
+			<result name="success" type="tiles">zzimHistory</result>
+		</action>
+		
+		<!-- mypage 장소 신청 내역-->
+		<action name="mypagePlacebookHistory" class="mypage.MypagePlacebookHistoryAction">
+			<result name="success" type="tiles">placebookHistory</result>
+		</action>
+		
+		<!-- 장소삭제 -->
+		<action name="lendplaceDelete" class="lendplace.LendplaceDetailAction" method="delete">
+			<result type="redirect-action">
+				<param name="actionName">lendplace</param>
+			</result>
+		</action>
+		
+		<!-- 장소 신청 취소 -->
+		<action name="placebookDelete" class="lendplace.PlacebookAction" method="delete">
+			<result type="redirect-action">
+				<param name="actionName">mypagePlacebookHistory</param>
+			</result>
+		</action>
+		
+		<!-- 모임 신고 하기 -->
+		<action name="groupReport" class="mypage.MypageReportAction">
+			<result type="redirect-action">
+				<param name="actionName">mypageMeetHistory</param>
+			</result>
+		</action>
+		
+		<!-- 모임 신고 취소 하기 -->
+		<action name="groupReportCancel" class="mypage.MypageReportAction" method="cancel">
+			<result type="redirect-action">
+				<param name="actionName">mypageMeetHistory</param>
+			</result>
+		</action>
+	
+		
+</package>		
+</struts>

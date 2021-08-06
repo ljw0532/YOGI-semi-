@@ -1,0 +1,27 @@
+div.title {
+	font-weight: bold;font-family:monospace;font-size: x-small;
+}
+table.gborder{
+	border-style: solid;border-width: thin;border-color: red;width: 100%
+}
+td.cate{
+	width: 50%;
+}
+a.contentSubject{
+	text-decoration: none;color: gray;font-size: x-small;
+}
+a.category{
+	text-decoration: none;color: gray;font-size: x-small;
+}
+a:HOVER {
+	color: red;
+}
+input[type=text]{
+	font-size: small;color: gray;
+}
+img.openmeet_rep{
+	width: 90px;height: 90px;
+	border-style: solid;
+	border-color: red;
+	border-width: thin;
+}

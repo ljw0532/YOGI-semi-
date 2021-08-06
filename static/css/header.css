@@ -1,0 +1,122 @@
+input.search_btn{
+	width: 100px;
+}
+
+div.loginBar {
+	background: black;
+	color: white;
+	text-align: right;
+}
+
+div.loginBar a {
+	color: white;
+	text-decoration: none;
+	font-size: medium;
+	font-family: sans-serif;
+}
+
+div.loginBar a:HOVER {
+	color: red;
+	font-size: medium;
+}
+
+hr.header {
+	margin: 0;
+	padding: 0;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	background-color: #FF2929;
+	font-family: sans-serif;
+	font-size: small;
+	font-weight: bold;
+	color: white;
+	border: 0;
+	padding: 5px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+}
+
+input[type=button]:HOVER, input[type=submit]:HOVER, input[type=reset]:HOVER{
+	background-color: gray;
+	color:black;
+}
+
+input[type=text], input[type=password], input[type=number] {
+	border-color: red;
+	border-style: solid;
+	border-width:1px;
+	height: 25px;
+}
+
+select {
+	border-color: red;
+	border-style: solid;
+	border-width:1px;
+	height: 29px;
+}
+
+a.paging_move {
+	font-family: sans-serif;
+	padding-left: 2px;
+	padding-right: 2px;
+	text-decoration: none;
+	color: white;
+	font-size: small;
+	border-style: solid;
+	border-width: medium;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-color: red;
+	background-color: red;
+}
+
+a.paging_move:HOVER{
+	color: black;
+	border-color:gray;
+	background-color: gray;
+}
+
+a.paging {
+	font-family:sans-serif;
+	font-weight:bold;
+	padding-left:5px;
+	padding-right:5px;
+	text-decoration: none;
+	color: white;
+	font-size: small;
+	border-style: solid;
+	border-width:medium;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-color:red;
+	background-color: red;
+}
+a.paging:HOVER{
+	color: black;
+	border-color:gray;
+	background-color: gray;
+}
+b.paging {
+	font-family: sans-serif;
+	font-weight: bold;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-decoration: none;
+	color: white;
+	font-size: small;
+	border-style: solid;
+	border-width: medium;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-color: gray;
+	background-color: gray;
+}

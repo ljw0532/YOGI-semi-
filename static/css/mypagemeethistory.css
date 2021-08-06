@@ -1,0 +1,94 @@
+img.openmeet_rep {
+	width: 120px;
+	height: 120px;
+}
+
+table.om_img_base{
+	border : 0.3px solid red;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	border-spacing: 0.3px;
+}
+
+table.om_img_base td{
+	border : 0.3px solid red;
+}
+
+td.om_view_subject{
+	text-align:center;
+	font-family: sans-serif;
+	font-weight:bold;
+	font-size:x-small;
+	height: 50px;
+	background-color: #FFE9E9;
+}
+
+td.opemneet_paging{
+	padding-top:16px;
+	text-align: center;
+	width: 100%;
+}
+
+div.title {
+	font-weight: bold;
+	font-family: monospace;
+	font-size: x-small;
+}
+
+table.category, table.area, table.people, table.payment {
+	width: 100%;
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+table.category td, table.area td, table.people td, table.payment td{
+	font-size: x-small;
+	border: 1px solid red;
+	padding: 1%;
+	width:50%;
+}
+
+table.category td:HOVER, table.area td:HOVER, table.people td:HOVER, table.payment td:HOVER {
+	cursor:pointer;
+	background-color: red;
+	font-weight: bold;
+	color: white;
+}
+
+.category_select{
+	background-color: red;
+	font-weight: bold;
+	color: white;
+}
+
+#searchbox{
+	color: gray;
+	font-size: x-small;
+	width: 200px;
+}
+
+/* input[type=text]::-ms-clear{
+	display: none;
+}
+ */
+.btnEventSearch{
+    position: relative;
+    float:right;
+    top: -26px;
+    right: 8px;
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    padding: 4px;
+    border: 0;
+}
+
+input[type=text].dtpicker_omview {
+	width:86px;
+	height: 20px;
+	font-size: x-small;
+	color: gray;
+	text-align: center;
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<typeAlias alias="lendplace" type="lendplace.LendplaceModel" />
+	<typeAlias alias="placebook" type="lendplace.PlacebookModel"/>
+
+	<resultMap class="lendplace" id="lendplace_rm">
+		<result property="l_no" column="l_no" />
+		<result property="l_subject" column="l_subject" />
+		<result property="l_addr" column="l_addr" />
+		<result property="l_content" column="l_content" />
+		<result property="l_rep_img" column="l_rep_img" />
+		<result property="l_enable" column="l_enable" />
+		<result property="l_sdate" column="l_sdate" />
+		<result property="l_edate" column="l_edate" />
+		<result property="l_payment" column="l_payment" />		
+	</resultMap>
+
+	<sql id="lp_select_all">
+		select * from lendplace
+	</sql>
+    <sql id="lp_orderby">
+		order by l_no desc
+	</sql>
+	<sql id="lp_where_l_no">
+		where l_no=#l_no#
+	</sql>
+	
+	<sql id="pb_where_l_no">
+		where l_no=#l_no#
+	</sql>
+	
+	<sql id="pb_where_l_no_m_no">
+		where l_no=#l_no# and m_no=#m_no#
+	</sql>
+	
+	
+	<sql id="lp_where_l_no_m_no">
+		where l_no=#l_no# and m_no=#m_no#
+	</sql>
+	
+	<sql id="lp_delete_all">
+		delete from lendplace
+	</sql>
+	
+	<select id="lendplace_select_all" resultMap="lendplace_rm">
+		<include refid="lp_select_all" />
+		<include refid="lp_orderby" />
+	</select> 
+	
+	<select id="lendplace_select_one" resultMap="lendplace_rm"
+		parameterClass="int">
+		<include refid="lp_select_all" />
+		<include refid="lp_where_l_no" />
+	</select>
+	
+	<insert id="lendplace_insert" parameterClass="lendplace">
+   		insert into lendplace values (lendplace_seq.nextval,#l_subject#,#l_addr#,#l_content#,#l_rep_img#,#l_enable#,#l_payment#,#l_sdate#,#l_edate#) 
+   </insert>
+   
+    <select id="lendplace_search" resultClass="lendplace" parameterClass="String">
+		<include refid="lp_select_all"/>
+		<dynamic prepend="where">
+			$param$
+		</dynamic>
+		<include refid="lp_orderby"/>
+	</select>
+	
+    <insert id="placebook_insert" parameterClass="placebook">
+		insert into placebook values(placebook_seq.nextval,#l_no#,#m_no#,#l_date#)
+	</insert>
+	
+	<!-- 날짜 중복 체크 -->
+	<select id="dateCheck" resultClass="placebook" parameterClass="placebook">
+		select * from placebook WHERE l_no=#l_no# and l_date=#l_date#
+	</select>
+	
+	<!-- 장소 삭제 -->
+	<delete id="lendplace_delete" parameterClass="int">
+		delete from lendplace
+		<include refid="lp_where_l_no" />
+	</delete>
+	
+	<!-- 장소 신청 취소 -->
+	<delete id="placebook_delete" parameterClass="int">
+		delete from placebook
+		<include refid="pb_where_l_no" />
+	</delete>
+	
+	
+</sqlMap>

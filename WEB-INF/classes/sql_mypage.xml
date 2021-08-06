@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="my">
+
+	<typeAlias alias="MembersModel" type="members.MembersModel"/>
+	<typeAlias alias="GroupModel" type="group.GroupModel"/>
+	<typeAlias alias="GroupEnrollModel" type="group.GroupEnrollModel"/>
+	<typeAlias alias="LikeitModel" type="likeit.LikeitModel" />
+	<typeAlias alias="PlacebookModel" type="lendplace.PlacebookModel" />
+	<typeAlias alias="LendplaceModel" type="lendplace.LendplaceModel" />
+	<typeAlias alias="reportModel" type="mypage.MypageReportModel" />
+	
+	<resultMap class="MembersModel" id="membersRes">
+		<result property="m_no" column="m_no"/>
+		<result property="m_id" column="m_id"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_password" column="m_password"/>
+		<result property="m_phone" column="m_phone"/>
+		<result property="m_date" column="m_date"/>
+		<result property="m_fav_area" column="m_fav_area"/>
+		<result property="m_fav_field" column="m_fav_field"/>
+		<result property="m_grade" column="m_grade"/>
+		<result property="m_lv" column="m_lv"/>
+		<result property="m_penalty" column="m_penalty"/>
+		
+	</resultMap>
+	
+	<!-- 회원정보 검색 -->
+	<select id="selectOneMember" resultMap="membersRes" parameterClass="String">
+		SELECT * FROM MEMBERS WHERE m_id=#m_id#
+	</select>
+	
+	<!-- 마이페이지 내가 개설한 모임 -->
+	<select id="writeHistoryGroup" parameterClass="int" resultClass="groupModel">
+		SELECT * FROM GROUP_GATHERING where m_no=#m_no# order by gg_no desc
+	</select>
+	
+	<!--  마이페이지 모임참여내역 -->
+	<select id="groupenroll_select_all" resultClass="groupenrollModel" parameterClass="int">
+		SELECT * FROM GROUP_ENROLL WHERE m_no=#m_no#
+	</select>
+	
+	<select id="groupgatheringHistory_select_all" resultClass="groupModel" parameterClass="int">
+		SELECT * FROM GROUP_GATHERING WHERE gg_no=#gg_no# 
+	</select>
+	
+	<!-- 마이페이지 찜 목록 -->
+	<select id="liketit_select_all" resultClass="groupModel" parameterClass="int">
+	select * from Group_Gathering where gg_no in(select gg_no from LikeIt where m_no=#m_no#)	
+	</select>
+	
+	<!-- 마이페이지 장소 신청 내역 -->
+	<select id="placebook_select_all" resultClass="placebookModel" parameterClass="int">
+	SELECT * FROM PLACEBOOK WHERE m_no=#m_no#
+	</select>
+	
+	<select id="lendplaceHistory_select_all" resultClass="lendplaceModel" parameterClass="int">
+	SELECT * FROM LENDPLACE WHERE l_no=#l_no# 
+	</select>
+	
+	<!-- 모임 신고하기 -->
+	
+	<insert id="report_insert" parameterClass="reportModel">
+   		insert into report values (report_seq.nextval,#m_no#,#gg_no#) 
+   </insert>
+   
+   	<update id="gg_update_penalty" parameterClass="int">
+		update group_gathering set gg_penalty = gg_penalty + 1 where gg_no = #gg_no#
+	</update>
+	
+	<update id="mb_update_penalty" parameterClass="int">
+		update members set m_penalty = m_penalty + 1 where m_no = #m_no#
+	</update>
+	
+	<!-- 내가 신고한 모임 목록 -->
+	<select id="myReportList" resultClass="reportModel" parameterClass="reportModel">
+		select * from report where m_no=#m_no#
+	</select>
+	
+		<sql id="rp_where_gg_no">
+		where gg_no=#gg_no#
+	</sql>
+	
+	<!-- 신고취소 -->
+	<delete id="report_cancel" parameterClass="int">
+		delete from report
+		<include refid="rp_where_gg_no" />
+	</delete>
+	
+   
+	
+	
+</sqlMap>

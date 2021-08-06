@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="struts_jj_package" extends="struts-default, tiles-default">
+	
+	<!-- 모임 시작 -->
+		<!-- 모임 폼 액션 -->
+		<action name="groupWriteForm" class="group.WriteAction">
+			<result name="success" type="tiles">groupForm</result>
+		</action>
+		
+		<!-- 모임 개설 액션 -->
+		<action name="groupWrite" class="group.WriteAction" method="insert">
+			<result type="redirect-action">
+				<param name="actionName">group</param>
+			</result>
+		</action>
+		
+		<!-- 이미지 업로드 액션 -->
+		<action name="ckeditorImageUpload" class="group.CkImageUploadAction">
+			<result name="success">/groupOpen/ck_imgup_result.jsp</result>
+		</action>
+		
+		<!-- 모임 목록 -->
+		<action name="group" class="group.GroupAction">
+			<result name="success" type="tiles">group</result>
+		</action>
+		
+		<!-- 모임 검색 액션 -->
+		<action name="search" class="group.GroupAction" method="search">
+			<interceptor-ref name="prepare"/>
+			<interceptor-ref name="modelDriven"/>
+			<interceptor-ref name="params"/>
+			<result name="success" type="tiles">group</result>
+		</action>
+		
+		<!-- 찜 -->
+		<action name="groupLike" class="group.GroupDetailAction" method="likeit">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+		<action name="groupEnroll" class="group.GroupDetailAction" method="enroll">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+		
+		<!-- 모임 상세보기 -->
+		<action name="groupDetail" class="group.GroupDetailAction">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+		
+		<action name="group_insert_cmt" class="group.GroupDetailAction" method="insertComments">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+		
+		<action name="group_delete_cmt" class="group.GroupDetailAction" method="deleteComments">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+		
+		<action name="group_enroll" class="group.GroupEnrollAction">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+		
+		<action name="group_enroll_insert" class="group.GroupEnrollAction" method="insert">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>
+			
+		<action name="group_enroll_delete" class="group.GroupEnrollAction" method="delete">
+			<result name="success" type="tiles">groupDetail</result>
+		</action>	
+			
+		<!-- 모임 수정 -->
+		<action name="groupModifyForm" class="group.GroupModifyAction">
+			<result name="success" type="tiles">groupModifyForm</result>
+		</action>
+		
+		<action name="groupModify" class="group.GroupModifyAction" method="modify">
+			<result type="redirect-action">
+				<param name="actionName">group</param>
+			</result>
+		</action>
+		
+		
+		<!-- 모임 삭제 -->
+		<action name="groupDelete" class="group.GroupModifyAction" method="delete">
+			<result type="redirect-action">
+				<param name="actionName">group</param>
+			</result>
+		</action>
+	<!-- 모임 끝 -->
+		
+		
+	<!-- 관리자 페이지 시작 -->
+		<!-- 관리자 페이지 -->
+		<action name="admin" class="admin.AdminAction">
+			<result name="success" type="tiles">admin</result>
+		</action>
+		
+		<!-- 회원 목록 -->
+		<action name="adminMemberList" class="admin.AdminMemberListAction">
+			<result name="success" type="tiles">adminMemberList</result>
+		</action>
+		
+		<!-- 장소 관리 -->
+		<action name="adminPlace" class="admin.AdminPlaceAction">
+			<result name="success" type="tiles">adminPlace</result>
+		</action>
+		
+		<!-- 신고 목록 관리 -->
+		<action name="adminReport" class="admin.AdminReportAction">
+			<result name="success" type="tiles">adminReport</result>
+		</action>
+		
+		<!-- 회원 추방 -->
+		<action name="adminDeleteMember" class="admin.AdminReportAction" method="deleteMember">
+			<result type="redirect-action">
+				<param name="actionName">adminReport</param>
+			</result>
+		</action>
+	<!-- 관리자 페이지 끝 -->
+	
+	</package>
+</struts>

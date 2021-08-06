@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="members">
+	<typeAlias alias="MembersModel" type="members.MembersModel"/>
+	<typeAlias alias="GroupModel" type="group.GroupModel" />
+
+	<resultMap class="MembersModel" id="membersRes">
+		<result property="m_no" column="m_no"/>
+		<result property="m_id" column="m_id"/>
+		<result property="m_name" column="m_name"/>
+		<result property="m_password" column="m_password"/>
+		<result property="m_phone" column="m_phone"/>
+		<result property="m_fav_area" column="m_fav_area"/>
+		<result property="m_fav_field" column="m_fav_field"/>
+		<result property="m_grade" column="m_grade"/>
+		<result property="m_lv" column="m_lv"/>
+		<result property="m_penalty" column="m_penalty"/>
+		<result property="m_date" column="m_date"/>
+	</resultMap>
+	
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterClass="MembersModel">
+		INSERT INTO MEMBERS(m_no,m_id,m_name,m_password,m_phone,m_fav_area,m_fav_field,m_date,m_grade,m_penalty,m_lv)
+		VALUES(members_seq.nextval,#m_id#,#m_name#,#m_password#,#m_phone#,#m_fav_area#,#m_fav_field#,#m_date#,0,0,'abcd')
+	</insert>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterClass="MembersModel">
+		update members set m_password=#m_password#, m_phone=#m_phone#, m_fav_area=#m_fav_area#, m_fav_field=#m_fav_field# where m_id=#m_id#
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember" parameterClass="String">
+		delete from members where m_id=#m_id#
+	</delete>
+	<delete id="deleteGroup" parameterClass="int">
+		delete from group_gathering where m_no=#m_no#
+	</delete>
+	
+	<!-- id 중복 확인 -->
+	<select id="idCheck" resultClass="MembersModel">
+		SELECT * FROM MEMBERS WHERE m_id=#m_id#
+	</select>
+	<!-- id 찾기 -->
+	<select id="findId" resultClass="MembersModel" parameterClass="MembersModel">
+		select m_id from members where m_name=#m_name# and m_phone=#m_phone#
+	</select>
+	<!-- 비밀번호 찾기 -->
+	<select id="findPW_check" resultClass="MembersModel" parameterClass="MembersModel">
+		select m_password from members where m_id=#m_id# and m_name=#m_name# and m_phone=#m_phone#
+	</select>
+	<update id="findPW" parameterClass="MembersModel">
+		update members set m_password='0000' where m_id=#m_id# and m_name=#m_name# and m_phone=#m_phone#
+	</update>
+	<!-- 로그인 췤췤 -->
+	<select id="loginCheck" resultClass="MembersModel" parameterClass="MembersModel">
+		SELECT * FROM MEMBERS WHERE m_id = #m_id# and m_password=#m_password#
+	</select>
+	
+	<!-- 추천추천 -->
+	<select id="fav_area" resultClass="String" parameterClass="String">
+		select M_FAV_AREA from members where m_id =#m_id#
+	</select>
+	<select id="fav_field" resultClass="String" parameterClass="String">
+		select M_FAV_FIELD from members where m_id =#m_id#
+	</select>
+	
+	<sql id="all_gg">
+		select * from Group_Gathering 
+	</sql>
+	
+	<select id="no_recommend" resultClass="GroupModel">
+		<include refid="all_gg"/>
+		order by  gg_no desc
+	</select>
+	
+	<select id="recommend" resultClass="GroupModel" parameterClass="String">
+		<include refid="all_gg"/>
+		<dynamic prepend="where">
+			$param$
+		</dynamic>
+		order by  gg_no desc
+	</select>
+	
+	<!-- member query -->
+	<sql id="mem_select_all">
+		select * from members
+	</sql>
+	
+	<sql id="mem_where_m_no">
+		where m_no=#m_no#
+	</sql>
+	
+	<select id="members_select_one_where_m_no" parameterClass="int" resultClass="MembersModel">
+		<include refid="mem_select_all"/>
+		<include refid="mem_where_m_no"/>
+	</select>
+	
+	
+</sqlMap>

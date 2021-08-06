@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name=".default" template="/tiles/layout/layout.jsp" />
+	<!-- 지수 -->
+	<!-- 모임 시작 -->
+		<!-- 모임 -->
+	<definition name="group" extends=".default">
+		<put-attribute name="title" value="YOGI - 모임 목록" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/group/groupList.jsp" />
+	</definition>
+	
+	<!-- 모임 상세보기 -->
+	<definition name="groupDetail" extends=".default">
+		<put-attribute name="title" value="YOGI - 모임 상세보기" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/group/groupDetail.jsp" />
+	</definition>
+	
+	<!-- 모임 개설 -->
+	<definition name="groupForm" extends=".default">
+		<put-attribute name="title" value="YOGI - 모임 개설" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/group/writeForm.jsp" />
+	</definition>
+	
+	<definition name="groupModifyForm" extends=".default">
+		<put-attribute name="title" value="YOGI - 모임 수정" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/group/groupModifyForm.jsp" />
+	</definition>
+	
+	<!-- 관리자 페이지 시작 -->
+	<!-- 관리자 페이지  -->
+	<definition name="admin" extends=".default">
+		<put-attribute name="title" value="YOGI - 관리자 페이지" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/admin/adminView.jsp" />
+	</definition>
+	
+	<!-- 회원 목록 -->
+	<definition name="adminMemberList" extends=".default">
+		<put-attribute name="title" value="YOGI - 회원 목록" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/admin/memberListView.jsp" />
+	</definition>
+	
+	<!-- 장소 관리  -->
+	<definition name="adminPlace" extends=".default">
+		<put-attribute name="title" value="YOGI - 장소 목록" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/admin/placeListView.jsp" />
+	</definition>
+	
+	<!-- 신고 목록 관리  -->
+	<definition name="adminReport" extends=".default">
+		<put-attribute name="title" value="YOGI - 신고 목록" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/admin/reportView.jsp" />
+	</definition>
+	<!-- 지수 -->
+	
+	<!-- 승미 -->
+	    <!-- 장소 목록 -->
+		<definition name="lendplace" extends=".default">
+			<put-attribute name="title" value="YOGI - 장소 목록" />
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/lendplace/lendplaceView.jsp" />
+		</definition>
+	    
+	    <!-- 장소 상세보기 -->
+	    <definition name="lendplaceDetail" extends=".default">
+			<put-attribute name="title" value="YOGI - 장소 상세보기" />
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/lendplace/lendplaceDetail.jsp" />
+		</definition>
+		
+	    <!-- 장소 등록 -->
+		<definition name="lendplaceForm" extends=".default">
+			<put-attribute name="title" value="YOGI - 관리자 장소등록" />
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/lendplace/lendplaceForm.jsp" />
+		</definition>
+	
+		
+		<!-- 마이페이지 -->
+		<definition name="mypageView" extends=".default">
+			<put-attribute name="title" value="YOGI - 마이페이지 메인"></put-attribute>
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/mypage/mypageView.jsp"></put-attribute>
+		</definition>
+		
+		<!-- 마이페이지 내가 개설한 모임 -->
+		<definition name="writeHistory" extends=".default">
+			<put-attribute name="title" value="YOGI - 내가 개설한 모임"></put-attribute>
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/mypage/mypageWriteHistory.jsp"></put-attribute>
+		</definition>
+	
+		<!-- 마이페이지 모임 참여 내역 -->
+		<definition name="meetHistory" extends=".default">
+			<put-attribute name="title" value="YOGI - 내가 참여한 모임"></put-attribute>
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/mypage/mypageMeetHistory.jsp"></put-attribute>
+		</definition>
+
+	
+		<!-- 마이페이지 내가 찜한 모임 -->
+		<definition name="zzimHistory" extends=".default">
+			<put-attribute name="title" value="YOGI - 내가 찜한 모임"></put-attribute>
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/mypage/mypageZzimHistory.jsp"></put-attribute>
+		</definition>
+	
+		<!-- 마이 페이지 장소 신청 내역 -->
+		<definition name="placebookHistory" extends=".default">
+			<put-attribute name="title" value="YOGI - 장소 신청 내역"></put-attribute>
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/mypage/mypagePlacebookHistory.jsp"></put-attribute>
+		</definition>
+	
+		<!-- 마이페이지 문의 내역 -->
+		<definition name="boardhelpHistory" extends=".default">
+			<put-attribute name="title" value="YOGI - 나의 문의내역"></put-attribute>
+			<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+			<put-attribute name="body" value="/mypage/mypageBoardhelpHistory.jsp"></put-attribute>
+		</definition>
+	<!-- 승미 -->
+
+	<!-- 정은 -->
+	<definition name="first" template="/FirstPage/firstPage.jsp" />
+	<definition name="findForm" template="/members/findForm/findForm.jsp" />
+	<definition name="membersForm" template="/members/membersForm/membersForm.jsp" />
+	<definition name="modifyForm" template="/members/membersForm/membersModifyForm.jsp" />
+	<definition name="membersIdChk" template="/members/membersIdChk.jsp" />
+
+	<definition name=".main_default" template="/tiles/layout/mainLayout.jsp" />
+	<definition name="main" extends=".main_default">
+		<put-attribute name="title" value="요기요기 모여라! b" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body1" value="/main/main1.jsp" />
+		<put-attribute name="body2" value="/main/main2.jsp" />
+	</definition>
+	
+	<!-- About -->
+	<definition name="about" extends=".default">
+		<put-attribute name="title" value="About" />
+		<put-attribute name="sidebar" value="/tiles/layout/sideBar/sidebar.jsp" />
+		<put-attribute name="body" value="/about/about.jsp" />
+	</definition>
+	<!-- 정은 -->
+
+</tiles-definitions>

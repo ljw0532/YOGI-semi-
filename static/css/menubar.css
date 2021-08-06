@@ -1,0 +1,60 @@
+              
+	#topMenu {
+            height: 30px;  /* 硫붿씤 硫붾돱�쓽 �넂�씠 */
+            width: 920px;  /* 硫붿씤 硫붾돱�쓽 �꼻�씠 */
+            margin: 0 auto;
+    }
+    #topMenu ul {           /* 硫붿씤 硫붾돱 �븞�쓽 ul�쓣 �꽕�젙�븿: �긽�쐞硫붾돱�쓽 ul+�븯�쐞 硫붾돱�쓽 ul */
+        list-style-type: none;  /* 硫붿씤 硫붾돱 �븞�쓽 ul �궡遺��쓽 紐⑸줉 �몴�떆瑜� �뾾�븷以� */
+        margin: 0px;            /* 硫붿씤 硫붾돱 �븞�쓽 ul�쓽 margin�쓣 �뾾�빊 */
+        padding: 0px;           /* 硫붿씤 硫붾돱 �븞�쓽 ul�쓽 padding�쓣 �뾾�빊 */
+    }
+    #topMenu ul li {            /* 硫붿씤 硫붾돱 �븞�뿉 ul �깭洹� �븞�뿉 �엳�뒗 li �깭洹몄쓽 �뒪���씪 �쟻�슜(�긽�쐞/�븯�쐞硫붾돱 紐⑤몢) */
+        color: white;               /* 湲��뵪 �깋�쓣 �씛�깋�쑝濡� �꽕�젙 */
+        background-color: #FF2929;  /* 諛곌꼍 �깋�쓣 RGB(2D2D2D)濡� �꽕�젙 */
+        float: left;                /* �쇊履쎌쑝濡� �굹�뿴�릺�룄濡� �꽕�젙 */
+        line-height: 30px;          /* �뀓�뒪�듃 �븳 以꾩쓽 �넂�씠瑜� 30px濡� �꽕�젙 */
+        vertical-align: middle;     /* �꽭濡� �젙�젹�쓣 媛��슫�뜲濡� �꽕�젙 */
+        text-align: center;         /* �뀓�뒪�듃瑜� 媛��슫�뜲濡� �젙�젹 */
+        position: relative;         /* �빐�떦 li �깭洹� �궡遺��쓽 top/left �룷吏��뀡 珥덇린�솕 */
+    }
+    .menuLink, .submenuLink {           /* �긽�쐞 硫붾돱�� �븯�쐞 硫붾돱�쓽 a �깭洹몄뿉 怨듯넻�쑝濡� �꽕�젙�븷 �뒪���씪 */
+        text-decoration:none;               /* a �깭洹몄쓽 袁몃컝 �슚怨� �젣嫄� */
+        display: block;                     /* a �깭洹몄쓽 �겢由� 踰붿쐞瑜� �꼻�옒 */
+        width: 150px;                       /* 湲곕낯 �꼻�씠瑜� 150px濡� �꽕�젙 */
+        font-size: 12px;                    /* �룿�듃 �궗�씠利덈�� 12px濡� �꽕�젙 */
+        font-weight: bold;                  /* �룿�듃瑜� 援듦쾶 �꽕�젙 */
+        font-family: "Trebuchet MS", Dotum; /* 湲곕낯 �룿�듃瑜� �쁺�뼱/�븳湲� �닚�꽌��濡� �꽕�젙 */
+    }
+    .menuLink {     /* �긽�쐞 硫붾돱�쓽 湲��뵪�깋�쓣 �씛�깋�쑝濡� �꽕�젙 */
+        color: white;
+    }
+    .topMenuLi:hover .menuLink {    /* �긽�쐞 硫붾돱�쓽 li�뿉 留덉슦�뒪�삤踰� �릺�뿀�쓣 �븣 �뒪���씪 �꽕�젙 */
+        color: black;                 /* 湲��뵪 �깋 鍮④컙�깋 */
+        background-color: gray;  /* 諛곌꼍�깋�쓣 諛앹� �쉶�깋�쑝濡� �꽕�젙 */
+    }
+    .submenuLink {          /* �븯�쐞 硫붾돱�쓽 a �깭洹� �뒪���씪 �꽕�젙 */
+        color: #2d2d2d;             /* 湲��뵪 �깋�쓣 RGB(2D2D2D)濡� �꽕�젙 */
+        background-color: white;    /* 諛곌꼍�깋�쓣 �씛�깋�쑝濡� �꽕�젙 */
+        border: solid 1px black;    /* �뀒�몢由щ�� �꽕�젙 */
+        margin-top: -1px;           /* �쐞 移몄쓽 �븯�떒 �뀒�몢由ъ� �븘�옒移몄쓽 �긽�떒 �뀒�몢由ш� 寃뱀퀜吏��룄濡� �꽕�젙 */
+    }
+    .longLink {     /* 醫� �뜑 湲� 硫붾돱 �뒪���씪 �꽕�젙 */
+        width: 190px;   /* �꼻�씠�뒗 190px濡� �꽕�젙 */
+    }
+    .submenu {              /* �븯�쐞 硫붾돱 �뒪���씪 �꽕�젙 */
+        position: absolute;     /* html�쓽 flow�뿉 �쁺�뼢�쓣 誘몄튂吏� �븡寃� absolute �꽕�젙 */
+        height: 0px;            /* 珥덇린 �넂�씠�뒗 0px濡� �꽕�젙 */
+        overflow: hidden;       /* �떎 �궡�슜�씠 �넂�씠蹂대떎 而ㅼ�硫� �빐�떦 �궡�슜 媛먯땄 */
+        transition: height .2s; /* height瑜� 蹂��솕 �떆耳곗쓣 �븣 0.2珥덇컙 蹂��솕 �릺�룄濡� �꽕�젙(湲곕낯) */
+        -webkit-transition: height .2s; /* height瑜� 蹂��솕 �떆耳곗쓣 �븣 0.2珥덇컙 蹂��솕 �릺�룄濡� �꽕�젙(援щ쾭�쟾 �겕濡�/�궗�뙆�씪�뀭) */
+        -moz-transition: height .2s; /* height瑜� 蹂��솕 �떆耳곗쓣 �븣 0.2珥덇컙 蹂��솕 �릺�룄濡� �꽕�젙(援щ쾭�쟾 �뙆�룺) */
+        -o-transition: height .2s; /* height瑜� 蹂��솕 �떆耳곗쓣 �븣 0.2珥덇컙 蹂��솕 �릺�룄濡� �꽕�젙(援щ쾭�쟾 �삤�럹�씪) */
+    }
+    .topMenuLi:hover .submenu { /* �긽�쐞 硫붾돱�뿉 留덉슦�뒪 紐⑤쾭�븳 寃쎌슦 洹� �븞�쓽 �븯�쐞 硫붾돱 �뒪���씪 �꽕�젙 */
+        height: 93px;           /* �넂�씠瑜� 93px濡� �꽕�젙 */
+    }
+    .submenuLink:hover {        /* �븯�쐞 硫붾돱�쓽 a �깭洹몄쓽 留덉슦�뒪 �삤踰� �뒪���씪 �꽕�젙 */
+        color: red;                 /* 湲��뵪�깋�쓣 鍮④컙�깋�쑝濡� �꽕�젙 */
+        background-color: #dddddd;  /* 諛곌꼍�쓣 RGB(DDDDDD)濡� �꽕�젙 */
+    }

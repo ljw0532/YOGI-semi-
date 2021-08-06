@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<include file="struts_je.xml"/> 	<!-- 정은 -->
+	<include file="struts_jj.xml"/> 	<!-- 지수&재욱 -->
+	<include file="struts_smij.xml"/> 	<!-- 승미&인재 -->
+		
+</struts>

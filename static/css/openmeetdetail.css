@@ -1,0 +1,102 @@
+@import url(/TEP/static/css/alertify.default.css);
+@import url(/TEP/static/css/openmeetview.css);
+
+table.om_detail_header_table{
+	/* border-style: solid;
+	border-width: thin;
+	border-color: red; */
+}
+td.om_detail_header_table_td1{
+	border-style: solid;
+	border-width: thin;
+	border-color: red;
+}
+td.om_detail_header_table_td2{
+	border-style: solid;
+	border-width: thin;
+	border-color: red;
+	padding: 1%;
+}
+div.om_detail_header_subject{
+	font-weight: bold;
+	font-size: large;
+	font-family: sans-serif;
+}
+dl.om_detail_header{
+	list-style: none;
+	padding-left: 0px;
+}
+dt.om_detail_header_dt{
+	font-weight:bold;
+	font-size: small;
+}
+dd.om_detail_header_dd1{
+	margin-left: 0px;
+	font-size: x-small;
+	font-weight: bold;
+}
+dd.om_detail_header_dd2{
+	margin-left: 0px;
+	font-size: x-small;
+	font-family:monospace;
+	color: gray;
+}
+img.om_detail_header{
+	width: 230px;height: 230px;
+}
+hr.om_detail_hr{
+	border: solid 0.5px red;
+}
+table.om_detail_header_table_register {
+	border-style: double;
+	border-color: red;
+	border-width: 5px"
+}
+input.om_detail_register_input{
+	margin:0px;
+	padding:0px;
+	font-size: small;
+	text-align: right;
+	border: solid 1px red;
+}
+table.om_detail_content{
+	border: solid 0.5px red;
+	width: 100%;
+	padding: 1%;
+}
+div.om_detail_contet_map{
+	border-color: red;
+	border-width: thin;
+	border-style: solid;
+}
+textarea.om_detail_comments{
+	width: 100%;
+	height: 45px;
+	border-color: red;
+	border-style: solid;
+	border-width: thin;
+}
+body, ul, ol, html, h1, h2, h3, h4, h5, h6, p, img, form, dl, dd, dt{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: small;
+}
+div.cancel_info {
+	font-family: monospace;
+	border-style: solid;
+	border-color: red;
+	border-width: thin;
+	font-size: x-small; small;
+	color: gray;
+	background-color: #FFEDED;
+	padding: 1%;
+}
+
+a{
+	text-decoration: none;
+	color: black;	
+}
+a:HOVER {
+	color: red;
+}

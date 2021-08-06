@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="jj">
+	<typeAlias alias="group" type="group.GroupModel"/>
+	<typeAlias alias="members" type="members.MembersModel"/>
+	<typeAlias alias="lendplace" type="lendplace.LendplaceModel"/>
+	<typeAlias alias="report" type="admin.AdminReportModel"/>
+	<typeAlias alias="comments" type="comments.CommentsModel"/>
+	<typeAlias alias="groupenroll" type="group.GroupEnrollModel"/>
+	<typeAlias alias="likeit" type="likeit.LikeitModel"/>
+	<typeAlias alias="lendplaceAdmin" type="admin.AdminPlaceModel"/>
+<!-- group query -->
+	<sql id="gg_select_all">
+		select * from group_gathering
+	</sql>
+
+	<sql id="gg_where_gg_no">
+		where gg_no=#gg_no#
+	</sql>
+	
+	<sql id="gg_orderby">
+		order by gg_no desc
+	</sql>
+	
+	<sql id="gg_where_search_gg_name_detail">
+		where gg_name like '%'||#searchWord#||'%' or gg_detail like '%'||#searchWord#||'%'
+	</sql>
+	
+	<sql id="gg_delete_all">
+		delete from group_gathering
+	</sql>
+
+	<select id="group_search" resultClass="group" parameterClass="String">
+		<include refid="gg_select_all"/>
+		<dynamic prepend="where">
+			$param$
+		</dynamic>
+		<include refid="gg_orderby"/>
+	</select>
+
+	<select id="group_select_all" resultClass="group" parameterClass="int">
+		<include refid="gg_select_all" />
+		<include refid="gg_orderby"/>
+	</select>
+	
+	<select id="group_select_one" resultClass="group">
+		<include refid="gg_select_all" />
+		<include refid="gg_where_gg_no" />	
+	</select>
+	
+	<insert id="group_insert" parameterClass="group">
+		insert into group_gathering values(groupgathering_seq.nextval,#gg_name#,#m_no#,#gg_category#,#gg_place#,#gg_date#,#gg_simple#,#gg_detail#,#gg_cost#,#gg_total#,#gg_enable#,#gg_img#,#gg_penalty#,#gg_small_img#)
+	</insert>
+	
+	<update id="group_update" parameterClass="group">
+		update group_gathering set gg_place=#gg_place#,gg_date=#gg_date#,gg_simple=#gg_simple#,gg_detail=#gg_detail#,gg_cost=#gg_cost#
+		<include refid="gg_where_gg_no"/>
+	</update>
+
+	<delete id="group_delete" parameterClass="int">
+		<include refid="gg_delete_all"/>
+		<include refid="gg_where_gg_no"/>
+	</delete>
+
+	<update id="group_update_current_p" parameterClass="group">
+		update group_gathering set gg_enable=gg_enable+#gg_enable# where gg_no=#gg_no#
+	</update>
+	
+	<update id="group_delete_current_p" parameterClass="group">
+		update group_gathering set gg_enable=gg_enable+#gg_enable# where gg_no=#gg_no#
+	</update>
+	
+	<!-- host 이름 꺼내오기 -->
+	<select id="get_host" resultClass="String" parameterClass="int">
+		select m_name from members where m_no = #m_no#
+	</select>
+	
+<!-- group Query 끝 -->
+
+
+<!-- groupenroll query -->
+
+	<select id="groupenroll_select_all" resultClass="groupenroll" parameterClass ="int" >
+		select group_enroll.ge_no, group_enroll.gg_no, group_enroll.m_no, members.m_name from group_enroll, members where members.m_no = group_enroll.m_no and gg_no=#gg_no#
+	</select>
+	
+	<select id="groupenroll_select_m_no" resultClass="groupenroll" parameterClass="likeit">
+		select * from group_enroll where gg_no=#gg_no# and m_no=#m_no#  
+	</select>
+	
+	<insert id="ge_insert" parameterClass="likeit">
+		insert into group_enroll values(enroll_seq.nextval,#gg_no#,#m_no#)
+	</insert>
+	
+	<delete id="ge_delete" parameterClass="likeit">
+		delete from group_enroll where gg_no=#gg_no# and m_no=#m_no#
+	</delete>
+	
+	<delete id="ge_delete_all" parameterClass="int">
+		delete from group_enroll where gg_no=#gg_no#
+	</delete>
+	
+	<delete id="ge_delete_where_m_no" parameterClass="int">
+		delete from group_enroll where m_no=#m_no#
+	</delete>
+
+<!-- groupenroll query 끝-->
+	
+	
+<!-- likeit query -->
+	<insert id="likeit_insert_group" parameterClass="likeit">
+		insert into likeit(li_no,gg_no,m_no) values(likeit_seq.nextval,#gg_no#,#m_no#)
+	</insert>
+	
+	<select id="likeit_select_group" parameterClass="int" resultClass="int">
+		select count(*) from likeit where gg_no=#gg_no#
+	</select>
+	
+	<select id="likeit_select_exist" parameterClass="likeit" resultClass="likeit">
+		select * from likeit where gg_no=#gg_no# and m_no=#m_no#
+	</select>
+	
+	<delete id="likeit_delete" parameterClass="likeit">
+		delete from likeit where gg_no=#gg_no# and m_no=#m_no#
+	</delete>
+	
+	<delete id="likeit_delete_all" parameterClass="int">
+		delete from likeit where gg_no=#gg_no#
+	</delete>
+	
+	<delete id="likeit_delete_where_m_no" parameterClass="int">
+		delete from likeit where m_no=#m_no#
+	</delete>
+<!-- likeit query 끝-->
+
+<!-- comments query -->
+	<select id="comments_select_all_gg_no" parameterClass="int" resultClass="comments">
+		select c_no, c_content, c_date, gg_no, comments.m_no, m_name from comments, members where gg_no=#gg_no# and members.m_no=comments.m_no order by c_no desc
+	</select>
+	
+	<!-- 삽입 -->
+	<insert id="comments_insert" parameterClass="comments">
+		insert into comments values(comments_seq.nextval, #c_content#, #c_date#, #gg_no#, #m_no#)
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="comments_delete" parameterClass="comments">
+		delete from comments where c_no=#c_no#
+	</delete>
+	
+	<delete id="comments_delete_all" parameterClass="int">
+		delete from comments where gg_no=#gg_no# 
+	</delete>
+	
+	<delete id="comments_delete_where_m_no" parameterClass="int">
+		delete from comments where m_no=#m_no# 
+	</delete>
+	
+	
+<!-- comments query 끝-->
+
+
+<!-- adminPage Query -->
+	<!-- 멤버 가져오기 -->
+	<sql id="m_select_all">
+		select * from members
+	</sql>
+	<sql id="m_where_m_no">
+		where m_no=#m_no#
+	</sql>
+	<sql id="m_orderby">
+		order by m_no desc
+	</sql>
+	
+	<update id="members_grade" parameterClass="members">
+      update members set m_grade=m_grade+#m_grade# where m_no=#m_no#
+    </update>
+	
+	<select id="members_select_one" resultClass="members" parameterClass="int">
+		<include refid="m_select_all"/>
+		<include refid="m_where_m_no"/>
+	</select>
+	
+	<select id="members_select_all" resultClass="members" parameterClass="int">
+		<include refid="m_select_all"/>
+		<include refid="m_orderby"/>
+	</select>
+	
+	<!-- 신고받은 회원 & 모임 리스트 가져오기 -->
+	<select id="report_select_all" resultClass="report">
+		select m.*,g.* from group_gathering g inner join members m on g.m_no=m.m_no where g.gg_penalty>0
+	</select>
+	
+	<!-- 신고받은 회원 관련 정보 삭제하기(추방) -->
+	<select id="gg_no_select_where_m_no" parameterClass="int" resultClass="int">
+		select gg_no from group_gathering where m_no=#m_no#
+	</select>
+	
+	<delete id="member_delete_where_m_no" parameterClass="int">
+		delete from members where m_no=#m_no#
+	</delete>
+	
+	<delete id="group_delete_where_m_no" parameterClass="int">
+		delete from group_gathering where m_no=#m_no#
+	</delete>
+	
+	<delete id="placebook_delete_where_m_no" parameterClass="int">
+		delete from placebook where m_no=#m_no#
+	</delete>
+	
+	<!-- 장소 목록 가져오기 -->
+	<select id="lendplaceAdmin_select_all" resultClass="lendplaceAdmin">
+		select lendplace.l_no, lendplace.l_subject, lendplace.l_addr, lendplace.l_sdate, lendplace.l_edate, placebook.l_date, members.m_id from lendplace, placebook, members where lendplace.l_no = placebook.l_no and placebook.m_no = members.m_no ORDER BY lendplace.l_no desc
+	</select>
+	
+	<!-- 회원목록에서 검색하기 -->
+	<select id="MemberList_search_m_name_select_all" resultClass="members" parameterClass="members">
+		SELECT * FROM members WHERE m_name like '%'||#m_name#||'%' ORDER BY m_no desc
+	</select>
+	
+	<select id="MemberList_search_m_id_select_all" resultClass="members" parameterClass="members">
+		SELECT * FROM members WHERE m_id like '%'||#m_id#||'%' ORDER BY m_no desc
+	</select>
+	
+	<!-- 신고목록에서 검색하기 -->
+	<select id="ReportList_search_gg_name_select_all" resultClass="report" parameterClass="report">
+		select m.*,g.* from group_gathering g inner join members m on g.m_no=m.m_no where g.gg_penalty>0 and gg_name like '%'||#gg_name#||'%' order by g.gg_no desc
+	</select>
+	
+	<select id="ReportList_search_m_id_select_all" resultClass="report" parameterClass="report">
+		select m.*,g.* from group_gathering g inner join members m on g.m_no=m.m_no where g.gg_penalty>0 and m_id like '%'||#m_id#||'%' ORDER BY g.gg_no desc
+	</select>
+	
+	<select id="ReportList_search_m_name_select_all" resultClass="report" parameterClass="report">
+		select m.*,g.* from group_gathering g inner join members m on g.m_no=m.m_no where g.gg_penalty>0 and m_name like '%'||#m_name#||'%' ORDER BY g.gg_no desc
+	</select>
+	
+	<!-- 장소 목록에서 검색하기 -->
+	<select id="LendplaceAdmin_search_l_subject_select_all" resultClass="lendplaceAdmin" parameterClass="lendplaceAdmin">
+		select lendplace.l_no, lendplace.l_subject, lendplace.l_addr, lendplace.l_sdate, lendplace.l_edate, placebook.l_date, members.m_id from lendplace, placebook, members where lendplace.l_no = placebook.l_no and placebook.m_no = members.m_no and l_subject like '%'||#l_subject#||'%' ORDER BY lendplace.l_no desc
+	</select>
+	
+	<select id="LendplaceAdmin_search_l_addr_select_all" resultClass="lendplaceAdmin" parameterClass="lendplaceAdmin">
+		select lendplace.l_no, lendplace.l_subject, lendplace.l_addr, lendplace.l_sdate, lendplace.l_edate, placebook.l_date, members.m_id from lendplace, placebook, members where lendplace.l_no = placebook.l_no and placebook.m_no = members.m_no and l_addr like '%'||#l_addr#||'%' ORDER BY lendplace.l_no desc
+	</select>
+	
+	<select id="LendplaceAdmin_search_m_id_select_all" resultClass="lendplaceAdmin" parameterClass="lendplaceAdmin">
+		select lendplace.l_no, lendplace.l_subject, lendplace.l_addr, lendplace.l_sdate, lendplace.l_edate, placebook.l_date, members.m_id from lendplace, placebook, members where lendplace.l_no = placebook.l_no and placebook.m_no = members.m_no and m_id like '%'||#m_id#||'%' ORDER BY lendplace.l_no desc
+	</select>
+	
+<!-- adminPage Query 끝-->
+
+
+
+	
+</sqlMap>

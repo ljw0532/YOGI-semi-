@@ -1,0 +1,26 @@
+@import url(/TEP/static/css/openmeetdetail.css);
+
+table.boardwrite {
+	width: 890px;
+}
+table.boardwrite select{
+	width: 190px;
+}
+table.boardwrite td{
+	border :1px solid red;
+	padding:5px;
+}
+td.bw_title{
+	font-size: small;
+	font-weight: bold;
+	font-family: sans-serif;
+	text-align: center;
+	width: 250px;
+}
+td.bw_content{
+	font-size: small;
+	font-family: sans-serif;
+}
+#b_subject{
+	width: 500px;
+}

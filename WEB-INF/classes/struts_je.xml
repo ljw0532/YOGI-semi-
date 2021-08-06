@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="struts_je_package" extends="struts-default, tiles-default">
+		<!-- 첫화면 -->
+		<action name="first" class="first.FirstAction">
+			<result name="success" type="tiles">first</result>
+		</action>
+		
+		<!-- 회원가입 -->		
+		<action name="CreateForm" class="members.MembersAction" method="MemberForm">
+			<result name="success" type="tiles">membersForm</result>
+		</action>
+		
+		<!-- 회원정보 수정 폼으로 가기-->
+		<action name="ModifyForm" class="members.MembersAction" method="ModifyForm">
+			<result name="success" type="tiles">modifyForm</result>
+		</action>
+		
+		 <!-- 회원정보 수정 : DB에 update -->
+		<action name="ModifyMembers" class="members.MembersAction" method="Modify">
+			<result type="chain">	
+				<param name="actionName">mypageView</param>
+			</result>
+		</action>
+		
+		<action name="DeleteMembers" class="members.MembersAction" method="Delete">
+			<result name = "success" type="redirect-action">
+        		<param name="actionName">first</param>
+    		</result>
+		</action>
+		
+		<!-- 회원가입 : ID체크 -->
+		<action name="membersIdChk" class="members.IdCheckAction">
+			<result name="success">/members/membersIdChk.jsp</result>
+			<!-- <result name="reject">/members/memberIdChkError.jsp</result> -->
+		</action>
+		 <!-- 회원가입 : DB에 삽입 -->
+		<action name="InsertMembers" class="members.MembersAction" method="Insert">
+			<result name="success" type="tiles">first</result>
+			<result name="reject">/members/memberIdChkError.jsp</result>
+		</action>
+		
+		<!-- ID/PW 찾기 -->
+		<action name="FindForm" class="members.FindMembersAction" method="FindForm">
+			<result name="success" type="tiles">findForm</result>
+		</action>
+		<action name="FindId" class="members.FindMembersAction" method="FindId">
+			<result name="success">/members/findForm/findId.jsp</result>
+		</action>
+		<action name="FindPW" class="members.FindMembersAction" method="FindPW">
+			<result name="success">/members/findForm/findPW.jsp</result>
+		</action>
+		
+		<!-- 로그인 -->
+		<action name="login" class="first.LoginAction" method="login">
+			<result name = "success" type="redirect-action">
+        		<param name="actionName">main</param>
+    		</result>
+    		<result name="error">/members/loginError.jsp</result>
+		</action>
+		
+		<!-- 로그아웃 -->
+		<action name="logout" class="first.LoginAction" method="logout">
+			<result name = "success" type="redirect-action">
+        		<param name="actionName">first</param>
+    		</result>
+    		<result name = "error" type="redirect-action">
+        		<param name="actionName">first</param>
+    		</result>
+		</action>
+		
+		<action name="main" class="main.MainAction">
+				<result name="success" type="tiles">main</result>
+			<!-- <result name="success" type="tiles">main</result>
+			<result name="error" type="tiles">first</result>
+			 -->
+		</action>
+		
+		<action name="about" class="main.MainAction" method="about">
+				<result name="success" type="tiles">about</result>
+		</action>
+		
+	</package>
+</struts>

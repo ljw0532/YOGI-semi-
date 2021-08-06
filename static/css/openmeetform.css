@@ -1,0 +1,43 @@
+.map_wrap { position: relative;	 width: 730px;	height:350px;}
+
+div.omf_info {
+	font-family: monospace;
+	border-style: solid;
+	border-color: red;
+	border-width: thin;
+	font-size: x-small; small;
+	color: gray;
+	background-color: #FFEDED;
+	padding: 1%;
+}
+
+table.omf_table_root, div.map_wrap, textarea.ofm_o_title{
+	border-color: red;
+	border-style: solid;
+	border-width: thin;
+}
+
+table, tr, td{
+	font-size: small;
+}
+
+td.td_title{
+	font-weight: bold;
+	text-align: right;
+}
+
+td{
+	padding:5px;
+}
+
+hr{
+	padding:0;
+	margin:0;
+	border-color: red;
+	border-style: solid;
+	border-width: 0.5px;
+}
+
+input[type=text]{
+	color: gray;
+}
